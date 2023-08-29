@@ -1,12 +1,9 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -27,9 +24,9 @@ model Donate_User {
 model Donate_Pets {
   donate_user_id Int
   pet_id         Int
+  id             Int         @id @default(autoincrement())
   donate_user    Donate_User @relation(fields: [donate_user_id], references: [id])
   pet            Pets        @relation(fields: [pet_id], references: [id])
-  id             Int         @id @default(autoincrement())
 }
 
 model Pets {
@@ -38,10 +35,10 @@ model Pets {
   color_id    Int
   breed_id    Int
   type_id     Int
-  pet_type    Pet_Type      @relation(fields: [type_id], references: [id])
+  Donate_Pets Donate_Pets[]
   pet_breed   Pet_Breed     @relation(fields: [breed_id], references: [id])
   pet_color   Pet_Color     @relation(fields: [color_id], references: [id])
-  Donate_Pets Donate_Pets[]
+  pet_type    Pet_Type      @relation(fields: [type_id], references: [id])
 }
 
 model Pet_Type {
