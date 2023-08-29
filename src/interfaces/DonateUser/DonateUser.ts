@@ -1,4 +1,4 @@
-export interface IDonateUser {
+export interface IVolunteerUser {
   id: number,
   firstName: string,
   lastName: string | null,

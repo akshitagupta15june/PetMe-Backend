@@ -2,13 +2,13 @@
 /* eslint-disable max-lines-per-function */
 import { PrismaClient } from '@prisma/client';
 import IStatusMap from '../../interfaces/StatusMap/StatusMap';
-import { IDonateUser } from '../../interfaces/DonateUser/DonateUser';
-import IDonateUserModel from '../../interfaces/DonateUser/DonateUserModel';
+import { IVolunteerUser } from '../../interfaces/DonateUser/DonateUser';
+import IVolunteerUserModel from '../../interfaces/DonateUser/DonateUserModel';
 
-export default class DonateUserModel implements IDonateUserModel {
+export default class VolunteerUserModel implements IVolunteerUserModel {
   private prisma = new PrismaClient();
 
-  async getDonateUserById(id: number): Promise<IDonateUser | null> {
+  async getVolunteerUserById(id: number): Promise<IVolunteerUser | null> {
     const donateUser = await this.prisma.donate_User.findUnique({
       where: {
         id,
@@ -19,7 +19,7 @@ export default class DonateUserModel implements IDonateUserModel {
     return donateUser;
   }
 
-  async getDonateUserByEmail(email: string): Promise<IDonateUser> {
+  async getVolunteerUserByEmail(email: string): Promise<IVolunteerUser> {
     const donateUser = await this.prisma.donate_User.findUnique({
       where: {
         email,
@@ -30,10 +30,10 @@ export default class DonateUserModel implements IDonateUserModel {
     return donateUser;
   }
 
-  async createDonateUser(donateUser: IDonateUser): Promise<IStatusMap> {
+  async createVolunteerUser(volunteerUser: IVolunteerUser): Promise<IStatusMap> {
     const isEmailAlreadyRegistered = await this.prisma.donate_User.findUnique({
       where: {
-        email: donateUser.email,
+        email: volunteerUser.email,
       },
     });
 
@@ -47,51 +47,51 @@ export default class DonateUserModel implements IDonateUserModel {
 
     await this.prisma.donate_User.create({
       data: {
-        first_name: donateUser.firstName,
-        last_name: donateUser.lastName,
-        email: donateUser.email,
-        address: donateUser.address,
-        city: donateUser.city,
-        state: donateUser.state,
-        country: donateUser.country,
-        zip_code: donateUser.zipCode,
-        phone_number: donateUser.phoneNumber,
+        first_name: volunteerUser.firstName,
+        last_name: volunteerUser.lastName,
+        email: volunteerUser.email,
+        address: volunteerUser.address,
+        city: volunteerUser.city,
+        state: volunteerUser.state,
+        country: volunteerUser.country,
+        zip_code: volunteerUser.zipCode,
+        phone_number: volunteerUser.phoneNumber,
       },
     });
 
     return {
       status: 'success',
-      message: 'DonateUser created successfully',
+      message: 'Volunteer User created successfully',
       code: 201,
     };
   }
 
-  async updateDonateUser(donateUser: IDonateUser): Promise<IStatusMap> {
+  async updateVolunteerUser(volunteerUser: IVolunteerUser): Promise<IStatusMap> {
     await this.prisma.donate_User.update({
       where: {
-        id: donateUser.id,
+        id: volunteerUser.id,
       },
       data: {
-        first_name: donateUser.firstName,
-        last_name: donateUser.lastName,
-        email: donateUser.email,
-        address: donateUser.address,
-        city: donateUser.city,
-        state: donateUser.state,
-        country: donateUser.country,
-        zip_code: donateUser.zipCode,
-        phone_number: donateUser.phoneNumber,
+        first_name: volunteerUser.firstName,
+        last_name: volunteerUser.lastName,
+        email: volunteerUser.email,
+        address: volunteerUser.address,
+        city: volunteerUser.city,
+        state: volunteerUser.state,
+        country: volunteerUser.country,
+        zip_code: volunteerUser.zipCode,
+        phone_number: volunteerUser.phoneNumber,
       },
     });
 
     return {
       status: 'success',
-      message: 'DonateUser updated successfully',
+      message: 'volunteerUser updated successfully',
       code: 200,
     };
   }
 
-  async deleteDonateUser(id: number): Promise<IStatusMap> {
+  async deleteVolunteerUser(id: number): Promise<IStatusMap> {
     await this.prisma.donate_User.delete({
       where: {
         id,
@@ -100,7 +100,7 @@ export default class DonateUserModel implements IDonateUserModel {
 
     return {
       status: 'success',
-      message: 'DonateUser deleted successfully',
+      message: 'volunteerUser deleted successfully',
       code: 200,
     };
   }

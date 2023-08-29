@@ -1,10 +1,10 @@
 import IStatusMap from '../StatusMap/StatusMap';
-import { IDonateUser } from './DonateUser';
+import { IVolunteerUser } from './DonateUser';
 
-export default interface IDonateUserModel {
-  getDonateUserById(id: number): Promise<IDonateUser | null>;
-  getDonateUserByEmail(email: string): Promise<IDonateUser>;
-  createDonateUser(donateUser: IDonateUser): Promise<IStatusMap>;
-  updateDonateUser(donateUser: IDonateUser): Promise<IStatusMap>;
-  deleteDonateUser(id: number): Promise<IStatusMap>;
+export default interface IVolunteerUserModel {
+  getVolunteerUserById(id: number): Promise<IVolunteerUser | null>;
+  getVolunteerUserByEmail(email: string): Promise<IVolunteerUser>;
+  createVolunteerUser(volunteerUser: IVolunteerUser): Promise<IStatusMap>;
+  updateVolunteerUser(volunteerUser: IVolunteerUser): Promise<IStatusMap>;
+  deleteVolunteerUser(id: number): Promise<IStatusMap>;
 }
