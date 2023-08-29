@@ -3,12 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable max-lines-per-function */
 const client_1 = require("@prisma/client");
-class DonateUserModel {
+class VolunteerUserModel {
     constructor() {
         this.prisma = new client_1.PrismaClient();
     }
-    async getDonateUserById(id) {
-        const donateUser = await this.prisma.donate_User.findUnique({
+    async getVolunteerUserById(id) {
+        const donateUser = await this.prisma.Volunteer_User.findUnique({
             where: {
                 id,
             },
@@ -17,8 +17,8 @@ class DonateUserModel {
             return null;
         return donateUser;
     }
-    async getDonateUserByEmail(email) {
-        const donateUser = await this.prisma.donate_User.findUnique({
+    async getVolunteerUserByEmail(email) {
+        const donateUser = await this.prisma.Volunteer_User.findUnique({
             where: {
                 email,
             },
@@ -27,10 +27,10 @@ class DonateUserModel {
             throw new Error('DonateUser not found');
         return donateUser;
     }
-    async createDonateUser(donateUser) {
-        const isEmailAlreadyRegistered = await this.prisma.donate_User.findUnique({
+    async createVolunteerUser(volunteerUser) {
+        const isEmailAlreadyRegistered = await this.prisma.Volunteer_User.findUnique({
             where: {
-                email: donateUser.email,
+                email: volunteerUser.email,
             },
         });
         if (isEmailAlreadyRegistered) {
@@ -40,60 +40,60 @@ class DonateUserModel {
                 code: 400,
             };
         }
-        await this.prisma.donate_User.create({
+        await this.prisma.Volunteer_User.create({
             data: {
-                first_name: donateUser.firstName,
-                last_name: donateUser.lastName,
-                email: donateUser.email,
-                address: donateUser.address,
-                city: donateUser.city,
-                state: donateUser.state,
-                country: donateUser.country,
-                zip_code: donateUser.zipCode,
-                phone_number: donateUser.phoneNumber,
+                first_name: volunteerUser.firstName,
+                last_name: volunteerUser.lastName,
+                email: volunteerUser.email,
+                address: volunteerUser.address,
+                city: volunteerUser.city,
+                state: volunteerUser.state,
+                country: volunteerUser.country,
+                zip_code: volunteerUser.zipCode,
+                phone_number: volunteerUser.phoneNumber,
             },
         });
         return {
             status: 'success',
-            message: 'DonateUser created successfully',
+            message: 'Volunteer User created successfully',
             code: 201,
         };
     }
-    async updateDonateUser(donateUser) {
-        await this.prisma.donate_User.update({
+    async updateVolunteerUser(volunteerUser) {
+        await this.prisma.Volunteer_User.update({
             where: {
-                id: donateUser.id,
+                id: volunteerUser.id,
             },
             data: {
-                first_name: donateUser.firstName,
-                last_name: donateUser.lastName,
-                email: donateUser.email,
-                address: donateUser.address,
-                city: donateUser.city,
-                state: donateUser.state,
-                country: donateUser.country,
-                zip_code: donateUser.zipCode,
-                phone_number: donateUser.phoneNumber,
+                first_name: volunteerUser.firstName,
+                last_name: volunteerUser.lastName,
+                email: volunteerUser.email,
+                address: volunteerUser.address,
+                city: volunteerUser.city,
+                state: volunteerUser.state,
+                country: volunteerUser.country,
+                zip_code: volunteerUser.zipCode,
+                phone_number: volunteerUser.phoneNumber,
             },
         });
         return {
             status: 'success',
-            message: 'DonateUser updated successfully',
+            message: 'volunteerUser updated successfully',
             code: 200,
         };
     }
-    async deleteDonateUser(id) {
-        await this.prisma.donate_User.delete({
+    async deleteVolunteerUser(id) {
+        await this.prisma.Volunteer_User.delete({
             where: {
                 id,
             },
         });
         return {
             status: 'success',
-            message: 'DonateUser deleted successfully',
+            message: 'volunteerUser deleted successfully',
             code: 200,
         };
     }
 }
-exports.default = DonateUserModel;
+exports.default = VolunteerUserModel;
 //# sourceMappingURL=index.js.map

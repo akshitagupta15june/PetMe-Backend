@@ -1,5 +1,5 @@
 import IStatusMap from '../StatusMap/StatusMap';
-import { IVolunteerUser } from './DonateUser';
+import { IVolunteerUser } from './VolunteerUser';
 
 export default interface IVolunteerUserModel {
   getVolunteerUserById(id: number): Promise<IVolunteerUser | null>;

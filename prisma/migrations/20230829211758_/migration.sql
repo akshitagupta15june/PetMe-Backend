@@ -15,6 +15,22 @@ CREATE TABLE "Donate_User" (
 );
 
 -- CreateTable
+CREATE TABLE "Volunteer_User" (
+    "id" SERIAL NOT NULL,
+    "first_name" TEXT NOT NULL,
+    "last_name" TEXT,
+    "email" TEXT NOT NULL,
+    "address" TEXT NOT NULL,
+    "city" TEXT NOT NULL,
+    "state" TEXT NOT NULL,
+    "country" TEXT NOT NULL,
+    "zip_code" TEXT NOT NULL,
+    "phone_number" TEXT NOT NULL,
+
+    CONSTRAINT "Volunteer_User_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Donate_Pets" (
     "donate_user_id" INTEGER NOT NULL,
     "pet_id" INTEGER NOT NULL,
@@ -76,6 +92,9 @@ CREATE TABLE "Support_User" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Donate_User_email_key" ON "Donate_User"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Volunteer_User_email_key" ON "Volunteer_User"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Support_User_email_key" ON "Support_User"("email");

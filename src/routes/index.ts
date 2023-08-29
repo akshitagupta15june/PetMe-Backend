@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import DonateUserRouter from './DonateUserRoutes';
+import VolunteerRoutes from './VolunteerUserRoutes';
 
 const router = Router();
 
-router.use('/donate', DonateUserRouter);
+router.use('/donate', VolunteerRoutes);
 
 export default router;

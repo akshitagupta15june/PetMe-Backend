@@ -22,10 +22,10 @@ model Donate_User {
 }
 
 model Volunteer_User {
-  id           Int           @id @default(autoincrement())
+  id           Int     @id @default(autoincrement())
   first_name   String
   last_name    String?
-  email        String        @unique
+  email        String  @unique
   address      String
   city         String
   state        String
